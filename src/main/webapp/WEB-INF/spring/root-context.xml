@@ -13,4 +13,6 @@
     <!-- Configures External Property Resolution -->
     <import resource="properties.xml" />
 
+    <import resource="database.xml" />
+
 </beans>
