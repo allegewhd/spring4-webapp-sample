@@ -1,6 +1,8 @@
 package org.codemelon.sample.springmvc.controller;
 
 import org.codemelon.sample.springmvc.config.AppConfig;
+import org.codemelon.sample.springmvc.model.TodoItem;
+import org.codemelon.sample.springmvc.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +19,9 @@ public class HomeController {
 	@Autowired
 	private AppConfig appConfig;
 
+    @Autowired
+    private TodoService todoService;
+
     @RequestMapping(value = "home", method = RequestMethod.GET)
     public String home(Model model) {
     	log.info("enter into HomeController.home()");
@@ -24,6 +29,10 @@ public class HomeController {
     	log.debug("show github config:");
     	log.debug("github client_id is " + appConfig.getGithubClientId());
     	log.debug("github client_secret is " + appConfig.getGithubClientSecret());
+
+        TodoItem todoItem = todoService.getTodoById(1);
+
+        log.debug("Todo item 1: " + todoItem.getTitle());
 
     	log.trace("cannot be seen yet");
 
